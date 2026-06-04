@@ -12,9 +12,12 @@ The project is designed around two templates:
 1. **Template Domain Checks** — attached to every monitored domain host.
 2. **Template Domain Overview** — attached to one technical overview host and used for dashboard aggregates.
 
-The goal is to keep Zabbix responsible for monitoring, alerting, and operational visibility, while avoiding manual per-domain dashboard work.`Template Domain Overview` is optional, but recommended if you want portfolio-level dashboard widgets and aggregate counters.
+The goal is to keep Zabbix responsible for monitoring, alerting, and operational visibility, while avoiding manual per-domain dashboard work.
+
+`Template Domain Overview` is optional, but recommended if you want portfolio-level dashboard widgets and aggregate counters.
 
 ---
+
 ## What this solves
 
 Domain expiration incidents are easy to miss when domains are managed across different registrars, accounts, and DNS providers.
@@ -240,7 +243,7 @@ Visible name: Domain Overview
 Templates: Template Domain Overview
 ```
 
-This host does not need an agent interface if it only contains calculated items.
+This host does not need an agent interface if it only contains calculated items. If your Zabbix version requires an interface during host creation, add any placeholder agent interface; it will not be used by calculated items.
 
 Set or verify the macro:
 
@@ -282,6 +285,8 @@ Recommended expiration severity model:
 | 31–60 days | Average | `last(/Domain Checks/check_domain["{$DOMAINNAME}",expiry])<=60 and last(/Domain Checks/check_domain["{$DOMAINNAME}",expiry])>30` |
 | 8–30 days | High | `last(/Domain Checks/check_domain["{$DOMAINNAME}",expiry])<=30 and last(/Domain Checks/check_domain["{$DOMAINNAME}",expiry])>7` |
 | 0–7 days | Disaster | `last(/Domain Checks/check_domain["{$DOMAINNAME}",expiry])<=7` |
+
+The `/Domain Checks/` part in trigger expressions must match the actual template or host name used in your Zabbix setup.
 
 Recommended trigger names:
 
