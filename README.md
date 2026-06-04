@@ -118,9 +118,9 @@ sudo chmod +x /usr/lib/zabbix/externalscripts/check_domain.sh
 Test manually:
 
 ```bash
-/usr/lib/zabbix/externalscripts/check_domain.sh tyran.ru expiry
-/usr/lib/zabbix/externalscripts/check_domain.sh tyran.ru registrar
-/usr/lib/zabbix/externalscripts/check_domain.sh tyran.ru ns
+/usr/lib/zabbix/externalscripts/check_domain.sh example.com expiry
+/usr/lib/zabbix/externalscripts/check_domain.sh example.com registrar
+/usr/lib/zabbix/externalscripts/check_domain.sh example.com ns
 ```
 
 ---
