@@ -1,4 +1,8 @@
 # Zabbix Domain Monitoring
+![Zabbix](https://img.shields.io/badge/Zabbix-7.4-red)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Shell](https://img.shields.io/badge/script-Bash-blue)
+![Platform](https://img.shields.io/badge/platform-Linux-lightgrey)
 
 A reusable Zabbix 7.4 template set for monitoring domain expiration, WHOIS metadata, name servers, and high-level domain portfolio health.
 
@@ -63,6 +67,7 @@ This project provides a reusable Zabbix-based monitoring setup for tracking doma
 - Bash script executed through a Zabbix `UserParameter`
 
 ---
+
 
 ## Repository structure
 
