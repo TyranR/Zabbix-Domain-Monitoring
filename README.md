@@ -1,4 +1,5 @@
 # Zabbix Domain Monitoring
+
 ![Zabbix](https://img.shields.io/badge/Zabbix-7.4-red)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Shell](https://img.shields.io/badge/script-Bash-blue)
@@ -11,13 +12,18 @@ The project is designed around two templates:
 1. **Template Domain Checks** — attached to every monitored domain host.
 2. **Template Domain Overview** — attached to one technical overview host and used for dashboard aggregates.
 
-The goal is to keep Zabbix responsible for monitoring, alerting, and operational visibility, while avoiding manual per-domain dashboard work.
+The goal is to keep Zabbix responsible for monitoring, alerting, and operational visibility, while avoiding manual per-domain dashboard work.`Template Domain Overview` is optional, but recommended if you want portfolio-level dashboard widgets and aggregate counters.
 
 ---
 ## What this solves
 
 Domain expiration incidents are easy to miss when domains are managed across different registrars, accounts, and DNS providers.
 This project provides a reusable Zabbix-based monitoring setup for tracking domain expiration dates, WHOIS metadata, registrars, name servers, and portfolio-level risk indicators.
+
+## Project status
+
+This project is currently under active development.
+The core domain expiration monitoring and overview dashboard structure are available. Some optional features, such as domain age distribution and exact expiration date parsing, are planned or experimental.
 
 ## Current limitations
 
@@ -133,6 +139,10 @@ Test manually:
 ### 2. Configure Zabbix Agent
 
 Add a `UserParameter`.
+
+Create a file:
+```bash
+sudo nano /etc/zabbix/zabbix_agentd.d/domain_checks.conf
 
 For example:
 
@@ -512,6 +522,30 @@ Planned improvements:
 
 ---
 
+## Security notes
+
+- The script performs WHOIS lookups only and does not modify domain or DNS records.
+- Do not store registrar credentials, API tokens, or domain account passwords in Zabbix macros.
+- If you extend the project with registrar APIs, use protected macros or external secret management.
+- Review script permissions and run it with the least privileges required.
+- Be aware that frequent WHOIS queries may be rate-limited by registries or registrars.
+
+---
+
+## Contributing
+
+Issues and pull requests are welcome.
+
+Useful contributions include:
+
+- Parser improvements for additional TLDs
+- Zabbix template exports
+- Dashboard screenshots
+- Grafana dashboard examples
+- Documentation improvements
+
+---
+
 ## Troubleshooting
 
 ### Item returns `Error`
@@ -574,4 +608,4 @@ Domain checks often run once per day, so a one-day graph may show little or no d
 
 ## License
 
-MIT License.
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
