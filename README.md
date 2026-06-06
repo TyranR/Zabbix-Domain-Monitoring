@@ -592,6 +592,15 @@ Last 90 days
 
 Domain checks often run once per day, so a one-day graph may show little or no data.
 
+### WHOIS checks timeout
+
+Some registries and registrars respond slowly. If items become unsupported with a timeout error, increase the item timeout override or the Zabbix agent timeout.
+
+Recommended item timeout for WHOIS-based checks:
+
+```text
+10s–15s
+
 ---
 ## 📊 Project Stats
 
