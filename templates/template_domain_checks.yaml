@@ -14,12 +14,15 @@ zabbix_export:
           name: 'Domain last checked'
           key: 'check_domain["{$DOMAINNAME}","checked"]'
           delay: 1d
+          history: 90d
           value_type: TEXT
         - uuid: 4e0f184fc9484e7e883a345b00c5d3f3
           name: 'Domain name servers'
           key: 'check_domain["{$DOMAINNAME}","ns"]'
           delay: 1d
+          history: 90d
           value_type: TEXT
+          timeout: 15s
           triggers:
             - uuid: 61624789d7274d88aac31aa307c999b9
               expression: 'last(/Domain Checks/check_domain["{$DOMAINNAME}","ns"],#1)<>last(/Domain Checks/check_domain["{$DOMAINNAME}","ns"],#2)'
@@ -34,17 +37,22 @@ zabbix_export:
         - uuid: dbd70850dbf04e4e86f91fdec6a7e8ea
           name: 'Domain age years'
           key: 'check_domain["{$DOMAINNAME}",age_years]'
+          delay: 1d
+          history: 90d
+          timeout: 15s
         - uuid: 32659508bd2742e2b5c6a10c229550e4
           name: 'Domain registration date'
           key: 'check_domain["{$DOMAINNAME}",created]'
           delay: 1d
           history: 90d
           value_type: TEXT
+          timeout: 15s
         - uuid: 6d8ef76817ea40498cb8782081c64643
           name: 'Domain expiration time'
           key: 'check_domain["{$DOMAINNAME}",expiry]'
           delay: 1d
           history: 90d
+          timeout: 15s
           triggers:
             - uuid: e6eb58c9f9af4b4eae5da59c735376b6
               expression: 'last(/Domain Checks/check_domain["{$DOMAINNAME}",expiry])<=7'
@@ -68,7 +76,9 @@ zabbix_export:
           name: 'Domain registrar'
           key: 'check_domain["{$DOMAINNAME}",registrar]'
           delay: 1d
+          history: 90d
           value_type: CHAR
+          timeout: 15s
           triggers:
             - uuid: e6bc843f641d4e6d8490d6c3d6ca7907
               expression: 'change(/Domain Checks/check_domain["{$DOMAINNAME}",registrar])=1'
