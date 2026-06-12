@@ -108,13 +108,13 @@ Install `whois` on the host where the Zabbix agent runs the script.
 
 ```bash
 sudo apt update
-sudo apt install whois
+sudo apt install whois dnsutils
 ```
 
 ### RHEL / CentOS / Rocky / AlmaLinux
 
 ```bash
-sudo dnf install whois
+sudo dnf install whois bind-utils
 ```
 
 ---
@@ -155,7 +155,7 @@ sudo nano /etc/zabbix/zabbix_agent2.d/domain_checks.conf
 For example:
 
 ```text
-UserParameter=check_domain[*],/usr/lib/zabbix/externalscripts/check_domain.sh "$1" "$2"
+UserParameter=check_domain[*],/usr/lib/zabbix/externalscripts/check_domain.sh "$1" "$2" "$3"
 ```
 
 Restart the Zabbix agent:
